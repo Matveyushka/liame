@@ -1,0 +1,111 @@
+#mailbox-area {
+  display: grid;
+  grid-template: 
+    "actions actions" auto
+    "categories list" 1fr
+    / auto 1fr 
+}
+
+#mailbox-actions {
+  grid-area: actions;
+  display: flex;
+  justify-content: flex-end;
+  border-bottom: 2px solid var(--main-color);
+}
+
+#mailbox-actions > .button {
+  width: auto;
+  padding: 0 1rem;
+}
+
+#mailbox-categories {
+  grid-area: categories;
+}
+
+#mailbox-categories > .button {
+  box-sizing: border-box;
+  width: 7rem;
+  justify-content: flex-start;
+  padding: 0 0.5rem;
+}
+
+#mailbox-list{
+  grid-area: list;
+  padding: 0.5rem;
+}
+
+.letter-row {
+  display: flex;
+  overflow: hidden;
+  margin-bottom: 0.5rem;
+}
+
+.letter-control {
+  display: flex;
+  align-items: center;
+  padding: 0 0.5rem;
+}
+
+.checkmark {
+  width: 1rem;
+  height: 1rem;
+  border: 2px solid var(--main-color);
+  background-color: var(--background-color);
+  -webkit-app-region: no-drag;
+}
+
+.checkmark:hover {
+  background-color: var(--main-color);
+  cursor: pointer;
+}
+
+.checked {
+  position: relative;
+}
+
+.checked:after {
+  content: "";
+  position: absolute;
+  width: 0.1rem;
+  height: 0.6rem;
+  left: 2px;
+  top: calc(2px + 0.3rem);
+  background-color: var(--main-color);
+  transform: rotate(-45deg);
+}
+
+.checked:before {
+  content: "";
+  position: absolute;
+  width: 0.1rem;
+  height: 1.1rem;
+  left: calc(2px + 0.5rem);
+  top: -1px;
+  background-color: var(--main-color);
+  transform: rotate(29deg);
+}
+
+.checked:hover::after {
+  content: "";
+  position: absolute;
+  width: 0.1rem;
+  height: 0.6rem;
+  left: 2px;
+  top: calc(2px + 0.3rem);
+  background-color: var(--background-color);
+  transform: rotate(-45deg);
+}
+
+.checked:hover::before {
+  content: "";
+  position: absolute;
+  width: 0.1rem;
+  height: 1.1rem;
+  left: calc(2px + 0.5rem);
+  top: -1px;
+  background-color: var(--background-color);
+  transform: rotate(29deg);
+}
+
+
+

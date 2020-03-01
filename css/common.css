@@ -1,0 +1,86 @@
+body {
+  --background-color: rgb(15, 25, 15);
+  --main-color: rgb(80, 200, 80);
+  --alternative-color: rgb(100, 190, 100);
+  --alert-color: rgb(200, 80, 80);
+}
+
+html, body {
+  margin: 0;
+  height: 100%;
+}
+
+.bordered {
+  border: 2px solid var(--main-color);
+}
+
+.main {
+  box-sizing: border-box;
+  background-color: var(--background-color);  
+  height: 100%;
+  width: 100%;
+  padding: 0.5rem;
+  font-family: 'Consolas';
+  color: var(--main-color);
+  -webkit-app-region: drag;
+}
+
+.label {
+  color: var(--alternative-color);
+  padding: 0.4rem 0;
+  -webkit-app-region: no-drag;
+}
+
+.text-input {
+  display: flex;
+  box-sizing: border-box;
+  align-items: center;
+  padding: 0.5rem;
+  width: 100%;
+  align-content: space-around;
+  background-color: var(--background-color);
+  color: var(--main-color);
+  font-family: 'Consolas';
+  font-size: 1rem;
+  -webkit-app-region: no-drag;
+}
+
+.text-input:focus {
+  outline: none;
+}
+
+.button {
+  height: 2rem;
+  width: 4rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-sizing: border-box;
+  font-family: 'Consolas';
+  font-size: 1rem;
+  color: var(--main-color);
+  -webkit-app-region: no-drag;
+}
+
+.button:focus {
+  background-color: var(--main-color);
+  color: var(--background-color);
+}
+
+.button:hover {
+  background-color: var(--main-color);
+  color: var(--background-color);
+  cursor: pointer;
+}
+
+.text-alert {
+  color: var(--alert-color);
+}
+
+.border-alert {
+  border: 2px solid var(--alert-color);
+}
+
+.invisible {
+  display: none;
+}

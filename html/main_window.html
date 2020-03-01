@@ -1,0 +1,51 @@
+<html>
+  <head>
+    <title>
+      liame
+    </title>
+    <link rel="stylesheet" href="../css/main_window/common.css">
+  </head>
+  <body>
+    <div class="main">
+      <div id="window-controllers">
+        <div id="window-title">liame</div>
+        <div id="minimize" class="button">_</div>
+        <div id="maximize" class="button">M</div>
+        <div id="exit" class="button">X</div>
+      </div>
+      <div id="mailbox-area" class="bordered">
+        <div id="mailbox-actions">
+          <div class="button">point all</div>
+          <div class="button">delete</div>
+          <div class="button">flag as read</div>
+        </div>
+        <div id="mailbox-categories">
+        </div>
+        <div id="mailbox-list">
+          <div class="letter-row bordered">
+            <div class="letter-control">
+              <div class="checkmark checked"></div>
+            </div>
+            <div class="letter-description">
+              <div class="label letter-from">from: waytokey@mail.ru</div>
+              <div class="label letter-datetime">timestamp: 27.02.2020 14:53</div>
+              <div class="label letter-subject">subject: work time</div>
+            </div>
+          </div>
+          <div class="letter-row bordered">
+            <div class="letter-control">
+              <div class="checkmark"></div>
+            </div>
+            <div class="letter-description">
+              <div class="label letter-from">from: pdior@mail.ru</div>
+              <div class="label letter-datetime">timestamp: 26.02.2020 18:41</div>
+              <div class="label letter-subject">subject: go lgbt!</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div id="letter-area" class="bordered"></div>
+    </div>
+  </body>
+  <script type="module" src="../js/renderers/main_window.js"></script>
+</html>

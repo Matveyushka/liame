@@ -1,0 +1,25 @@
+@import "../common.css";
+@import "window_controllers.css";
+@import "mailbox.css";
+
+.main {
+  display: grid;
+  width: 100%;
+  grid-template: 
+    "control control" auto
+    "mailbox letter" 1fr 
+    / 1fr 1fr
+}
+
+#window-controllers {
+  grid-area: control;
+}
+
+#mailbox-area {
+  grid-area: mailbox;
+  margin-right: 0.5rem;
+}
+
+#letter-area {
+  grid-area: letter;
+}

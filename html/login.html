@@ -1,0 +1,36 @@
+<html>
+
+<head>
+  <title>Log In</title>
+  <link rel="stylesheet" href="../css/login.css">
+</head>
+
+<body>
+  <div class="main">
+    <div class="login-page">
+      <div id="exit">X</div>
+      <div class="invitation">liame</div>
+      <div class="label" id="login-label-email">email</div>
+      <div class="text-input bordered" id="login-area" contenteditable="true"></div>
+      <div class="label" id="login-label-password">password</div>
+      <input class="text-input bordered" id="password-area" contenteditable="true" type="password" />
+      <div id="login-buttons">
+        <div class="button bordered" id="button-login">login</div>
+      </div>
+    </div>
+    <div class="loading-page invisible">
+      <div>loading</div>
+      <div class="loader-border bordered">
+        <div class="loader"></div>
+      </div>
+    </div>
+    <div class="error-page invisible">
+      <div class="invitation">error</div>
+      <div id="error-message">unknown error happens</div>
+      <div id="error-button" class="button bordered">return to login page</div>
+    </div> 
+  </div>
+</body>
+<script type="module" src="../js/renderers/login.js"></script>
+
+</html>

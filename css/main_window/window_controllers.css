@@ -1,0 +1,13 @@
+#window-controllers {
+  display: flex;
+  justify-content: flex-end;
+}
+
+#window-title {
+  flex-grow: 1;
+}
+
+.button {
+  height: 1.5rem;
+  width: 2rem;
+}
