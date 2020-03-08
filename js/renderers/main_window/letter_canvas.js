@@ -4,10 +4,10 @@ export const startNewLetter = (login, password) => {
   letterArea.innerHTML = ""
 
   const newLetter = document.createElement("div")
-  newLetter.classList.add("new-letter")
+  newLetter.classList.add("letter")
 
   const addressee = document.createElement("div")
-  addressee.classList.add("new-letter-addressee")
+  addressee.classList.add("letter-addressee")
 
   const addrLabel = document.createElement("div")
   addrLabel.classList.add("label")
@@ -15,13 +15,13 @@ export const startNewLetter = (login, password) => {
 
   const addrField = document.createElement("div")
   addrField.contentEditable = true
-  addrField.classList.add("new-letter-text-input")
+  addrField.classList.add("letter-text-input")
 
   addressee.append(addrLabel)
   addressee.append(addrField)
 
   const subject = document.createElement("div")
-  subject.classList.add("new-letter-subject")
+  subject.classList.add("letter-subject")
 
   const subjLabel = document.createElement("div")
   subjLabel.classList.add("label")
@@ -29,21 +29,21 @@ export const startNewLetter = (login, password) => {
 
   const subjField = document.createElement("div")
   subjField.contentEditable = true
-  subjField.classList.add("new-letter-text-input")
+  subjField.classList.add("letter-text-input")
 
   subject.append(subjLabel)
   subject.append(subjField)
 
   const letterCanvas = document.createElement("div")
   letterCanvas.contentEditable = true
-  letterCanvas.classList.add("new-letter-canvas")
-  letterCanvas.classList.add("new-letter-text-input")
+  letterCanvas.classList.add("letter-content")
+  letterCanvas.classList.add("letter-text-input")
 
   const attachments = document.createElement("div")
-  attachments.classList.add("new-letter-attachments")
+  attachments.classList.add("letter-attachments")
 
   const buttons = document.createElement("div")
-  buttons.classList.add("new-letter-buttons")
+  buttons.classList.add("letter-buttons")
 
   const clear = document.createElement("div")
   clear.classList.add("button")

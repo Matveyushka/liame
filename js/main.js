@@ -82,7 +82,6 @@ function createWindow() {
     } catch (error) {
       event.reply("sendMessageRes", error)
     }
-
   })
 }
 

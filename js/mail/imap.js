@@ -8,8 +8,6 @@ const getClient = async (login, password) => {
     }
   })
 
-  client.onerror = (error) => console.log(error)
-
   await client.connect()
 
   return client

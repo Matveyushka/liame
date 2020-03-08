@@ -38,7 +38,6 @@ window.api.listen("messagesInfoResponse", ({path, messages}) => {
   if (path === currentPath) {
     if (/Error/.test("" + messages) === false) {
       fillLettersList(currentLogin, currentPassword, currentPath, messages.reverse())
-      console.log("Bound === " + beginBound)
       if (beginBound === 1) {
         switchLoaderOff()
       }
@@ -51,7 +50,6 @@ window.api.listen("messagesInfoResponse", ({path, messages}) => {
 export const getCurrentPath = () => currentPath
 
 window.api.listen("openCategoryResMailboxSize", ({ login, password, path, mailboxSize }) => {
-  console.log(currentPath)
   if (path !== currentPath) { return }
   endBound = mailboxSize
   beginBound = mailboxSize - 19

@@ -1,11 +1,9 @@
-const parse = require('emailjs-mime-parser').default
+const simpleParser = require('mailparser').simpleParser
 
 const Imap = require('./imap')
 const nodemailer = require("nodemailer")
 
 const sendMail = async (login, password, to, subject, text, attachments) => {
-  console.log("SENDING...")
-
   const transporter = nodemailer.createTransport({
     host: "smtp.mail.ru",
     port: 465 ,
@@ -14,19 +12,17 @@ const sendMail = async (login, password, to, subject, text, attachments) => {
       user: login,
       pass: password
     }
-  })
+  })  
 
   const sentObject = {
-    from: '"Matveika" <' + login + '>', // sender address
-    to: to.toString(), // list of receivers
-    subject, // Subject line
-    text, // plain text body
-    attachments // html body
+    from: '"' + login + '" <' + login + '>',
+    to: to.toString(),
+    subject,
+    text,
+    attachments
   }
 
-  console.log(sentObject)
-
-  let info = await transporter.sendMail(sentObject);
+  return await transporter.sendMail(sentObject);
 }
 
 const getMailboxes = async (login, password) => {
@@ -45,7 +41,7 @@ const getMailboxes = async (login, password) => {
 const getMessage = async (login, password, boxPath, uid) => {
   try {
     const message = await Imap.getMessage(login, password, boxPath, uid)
-    return { info: message.envelope ,body: parse(message['body[]'])}
+    return { info: message.envelope ,body: await simpleParser(message['body[]'])}
   } catch (error) {
     return error
   }

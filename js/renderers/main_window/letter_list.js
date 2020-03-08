@@ -36,17 +36,14 @@ const addLetterToList = (login, password, path, messageInfo) => {
 
   const letterFrom = document.createElement("div")
   letterFrom.classList.add("label")
-  letterFrom.classList.add("letter-from")
   letterFrom.innerText = messageInfo.envelope.from[0].address
 
   const letterDatetime = document.createElement("div")
   letterDatetime.classList.add("label")
-  letterDatetime.classList.add("letter-datetime")
   letterDatetime.innerText = new Date(messageInfo.envelope.date).toLocaleString()
 
   const letterSubject = document.createElement("div")
   letterSubject.classList.add("label")
-  letterSubject.classList.add("letter-subject")
   letterSubject.innerText = messageInfo.envelope.subject
 
   letterDescription.append(letterFrom)

@@ -1,4 +1,4 @@
-.new-letter{
+.letter{
   box-sizing: border-box;
   display: flex;
   flex-direction: column;
@@ -6,12 +6,14 @@
   height: 100%;
 }
 
-.new-letter-canvas{
+.letter-content{
   flex-grow: 1;
   box-sizing: border-box;
+  overflow: scroll;
+  padding: 0.5rem 0;
 }
 
-.new-letter-attachments {
+.letter-attachments {
   border-top: 2px solid var(--main-color);
   border-bottom: 2px solid var(--main-color);
   height: 2rem;
@@ -36,29 +38,38 @@
   margin-left: 0.5rem;
 }
 
-.new-letter-buttons {
+.letter-buttons {
   height: auto;
   display: flex;
   flex-direction: row;
 }
 
-.new-letter-addressee {
+.letter-addressee {
   display: flex;
   flex-direction: row;
+  padding: 0.5rem;
   border-bottom: 2px solid var(--main-color);
 }
 
-.new-letter-subject {
+.letter-subject {
   display: flex;
   flex-direction: row;
+  padding: 0.5rem;
   border-bottom: 2px solid var(--main-color);
 }
 
-.new-letter-text-input {
+.letter-timestamp {
+  display: flex;
+  flex-direction: row;
+  padding: 0.5rem;
+  border-bottom: 2px solid var(--main-color);
+}
+
+.letter-text-input {
   padding: 0.5rem;
   width: 100%;
 }
 
-.new-letter-text-input:focus {
+.letter-text-input:focus {
   outline: none;
 }
