@@ -1,16 +1,11 @@
 "use strict"
 
-const parse = require('emailjs-mime-parser')
-
-const { app, BrowserWindow, ipcMain } = require("electron")
+const { app, BrowserWindow, ipcMain, screen } = require("electron")
 const {
   openLoginWindow,
   openMainWindow
 } = require("./windows.js")
-const { 
-  getMailboxes,
-  getMessages
-} = require("./imap/imap")
+const Mail = require("./mail/mail.js")
 const path = require('path')
 
 require('electron-reload')('.')
@@ -29,7 +24,18 @@ function createWindow() {
   ipcMain.on("exit", () => app.exit())
 
   ipcMain.on("mailboxesQuery", async (event, { login, password }) => {
-    event.reply("mailboxesResult", { login, password, mailboxes: await getMailboxes(login, password) })
+    event.reply("mailboxesResult", { login, password, mailboxes: await Mail.getMailboxes(login, password) })
+  })
+
+  ipcMain.on("getMessageReq", async (event, { login, password, path, uid }) => {
+    event.reply("getMessageRes", await Mail.getMessage(login, password, path, uid)) 
+  })
+
+  ipcMain.on("messagesInfoQuery", async (event, { login, password, path, begin, end }) => {
+    event.reply("messagesInfoResponse", {
+      path,
+      messages: await Mail.getMessagesInfo(login, password, path, begin, end)
+    })
   })
 
   ipcMain.on("startMainWindow", (_, data) => {
@@ -39,8 +45,44 @@ function createWindow() {
     openMainWindow(win)
   })
 
-  ipcMain.on("messagesQuery", async (event, { login, password, path, begin, end }) => {
-    event.reply("messagesResponce", await getMessages(login, password, path, begin, end)) 
+  ipcMain.on("maximize", () => {
+    const display = screen.getPrimaryDisplay()
+    const maxWidth = display.workArea.width
+    const maxHeight = display.workArea.height
+    if (win.getSize()[0] === maxWidth && win.getSize()[1] === maxHeight) {
+      win.setSize(1000, 500)
+      win.center()
+    } else {
+      win.setSize(maxWidth, maxHeight)
+      win.center()
+    }
+  })
+
+  ipcMain.on("minimize", () => {
+    win.minimize()
+  })
+
+  ipcMain.on("openCategoryGetMailboxSize", async (event, {login, password, path}) => {
+    event.reply("openCategoryResMailboxSize", {
+      login,
+      password,
+      path,
+      mailboxSize: await Mail.getMailboxSize(login, password, path)
+    })
+  })
+
+  ipcMain.on("deleteMessagesReq", async (event, { login, password, path, sequence }) => {
+    event.reply("deleteMessagesRes", await Mail.deleteMessages(login, password, path, sequence))
+  })
+
+  ipcMain.on("sendMessageReq", async (event, {login, password, to, subject, text, attachments}) => {
+    try {
+      await Mail.sendMail(login, password, to, subject, text, attachments)
+      event.reply("sendMessageRes", "success")
+    } catch (error) {
+      event.reply("sendMessageRes", error)
+    }
+
   })
 }
 

@@ -1,4 +1,4 @@
-import "../common.js"
+import "./common.js"
 
 const loginLabelId = "login-label-email"
 const loginInputId = "login-area"
@@ -88,8 +88,8 @@ document.getElementById("error-button").onclick = () => {
   showLoginPage()
 }
 
-window.api.receive("mailboxesResult", result => {
-  if (result.mailboxes.children !== undefined) {
+window.api.listen("mailboxesResult", result => {
+  if (result.mailboxes.forEach !== undefined) {
     hidePage()
     window.api.send("startMainWindow", result)
   } else if (/Error: Could not open socket/.test("" + result.mailboxes)) {

@@ -1,6 +1,9 @@
 @import "../common.css";
 @import "window_controllers.css";
 @import "mailbox.css";
+@import "information_row.css";
+@import "letter_area.css";
+@import "new_letter_area.css";
 
 .main {
   display: grid;
@@ -8,7 +11,9 @@
   grid-template: 
     "control control" auto
     "mailbox letter" 1fr 
-    / 1fr 1fr
+    "info info" auto
+    / 1fr 1fr;
+  overflow: hidden;
 }
 
 #window-controllers {
@@ -22,4 +27,8 @@
 
 #letter-area {
   grid-area: letter;
+}
+
+#information-row {
+  grid-area: info;
 }

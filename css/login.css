@@ -1,4 +1,9 @@
 @import "common.css";
+@import "loader.css";
+
+.main {
+  padding: 0.5rem;
+}
 
 .invitation {
   display: flex;
@@ -39,25 +44,6 @@
   justify-content: center;
   align-items: center;
 }
-
-.loader-border {
-  margin-top: 0.2rem;
-  width: 5rem;
-  height: 1rem;
-  overflow: hidden;
-  position: relative;
-}
-
-.loader {
-  position: absolute;
-  left: -5rem;
-  width: 5rem;
-  height: 1rem;
-  background-color: var(--main-color);
-  animation: 2s linear 0s infinite normal  move_loader;
-}
-
-@keyframes move_loader { from { left: -5rem; } to { left: 5rem }  }
 
 .error-page {
   width: 100%;

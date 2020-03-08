@@ -13,6 +13,7 @@ const openMainWindow = (win) => {
     win.show()
   })
   win.setResizable(true)
+  win.setMinimumSize(900, 400)
   win.center()
 }
 
