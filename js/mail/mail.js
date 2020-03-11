@@ -22,7 +22,7 @@ const sendMail = async (login, password, to, subject, text, attachments) => {
     attachments
   }
 
-  return await transporter.sendMail(sentObject);
+  return await transporter.sendMail(sentObject)
 }
 
 const getMailboxes = async (login, password) => {
@@ -55,11 +55,29 @@ const getMessagesInfo = async (login, password, boxPath, rangeBegin, rangeEnd) =
   }
 }
 
-const getMailboxSize = async (login, password, path) => (await 
-  Imap.selectMailbox(login, password, path)).exists
+const markAsRead = async (login, password, path, sequence) => {
+  try {
+    return await Imap.markAsRead(login, password, path, sequence)
+  } catch (error) {
+    return error
+  }
+}
 
-const deleteMessages = async (login, password, path, sequence) => await
-  Imap.deleteMessages(login, password, path, sequence)
+const getMailboxSize = async (login, password, path) => {
+  try {
+    return (await Imap.selectMailbox(login, password, path)).exists
+  } catch (error) {
+    return error
+  }
+}
+
+const deleteMessages = async (login, password, path, sequence) => {
+  try {
+    return await Imap.deleteMessages(login, password, path, sequence)
+  } catch (error) {
+    return error
+  }
+}
 
 module.exports = {
   sendMail,
@@ -67,5 +85,6 @@ module.exports = {
   getMessage,
   getMessagesInfo,
   getMailboxSize,
-  deleteMessages
+  deleteMessages,
+  markAsRead
 }

@@ -17,14 +17,23 @@ const addLetterToList = (login, password, path, messageInfo) => {
 
   const checkmark = document.createElement("div")
   checkmark.classList.add("checkmark")
+
+  newLetter.check = () => {
+    checkmark.classList.add("checked")
+    newLetter.checked = true
+  }
+
+  newLetter.uncheck = () => {
+    checkmark.classList.remove("checked")
+    newLetter.checked = false
+  }
+
   checkmark.onclick = (event) => {
     event.stopPropagation()
-    if (checkmark.classList.contains("checked")) {
-      checkmark.classList.remove("checked")
-      newLetter.checked = false
+    if (newLetter.checked) {
+      newLetter.uncheck()
     } else {
-      checkmark.classList.add("checked")
-      newLetter.checked = true
+      newLetter.check()
     }
   }
 
@@ -104,4 +113,24 @@ export const removeLetters = (uidList) => {
       mailboxList.removeChild(letter)
     }
   }) 
+}
+
+export const markAsRead = (uidList) => {
+  Array.from(mailboxList.children).forEach(letter => {
+    if (uidList.includes(letter.letterUid)) {
+      letter.classList.remove("unseen")
+    }
+  }) 
+}
+
+export const markAll = () => {
+  const checkable = Array.from(mailboxList.children).filter(div => div.check !== undefined)
+
+  const everyoneChecked = checkable.reduce((a, v) => v.checked && a, true)
+
+  if (everyoneChecked) {
+    checkable.forEach(div => div.uncheck())
+  } else {
+    checkable.forEach(div => div.check())
+  }
 }

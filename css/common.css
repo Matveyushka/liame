@@ -1,13 +1,17 @@
 @font-face {
   font-family: 'oldy';
-  src: url("../assets/18432.ttf");
+  src: url("../assets/font.ttf");
 }
 
 body {
-  --background-color: rgb(15, 25, 15);
+  /*--background-color: rgb(15, 25, 15);
   --main-color: rgb(80, 200, 80);
   --alternative-color: rgb(100, 190, 100);
-  --alert-color: rgb(200, 80, 80);
+  --alert-color: rgb(200, 80, 80);*/
+  --background-color: lightgray;
+  --main-color: darkblue;
+  --alternative-color: blue;
+  --alert-color: brown;
 }
 
 html, body {

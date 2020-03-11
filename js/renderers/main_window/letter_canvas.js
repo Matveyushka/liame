@@ -1,3 +1,5 @@
+import { infoLoaderOn, infoLoaderOff } from "./information_row.js"
+
 const letterArea = document.getElementById("letter-area")
 
 export const startNewLetter = (login, password) => {
@@ -103,6 +105,12 @@ export const startNewLetter = (login, password) => {
       contentType: attachment.fileType
     }))
 
+    window.api.receive("sendMessageRes", (response) => {
+      const info = /Error/.test(response) ? "letter sending failed" : "letter sent successful"
+      infoLoaderOff(info)
+    })
+
+    infoLoaderOn()
     window.api.send("sendMessageReq", {login, password, to, subject, text, attachments: sendattachments})
   }
 

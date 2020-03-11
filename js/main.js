@@ -10,7 +10,7 @@ const path = require('path')
 
 require('electron-reload')('.')
 
-function createWindow() {
+const createWindow = () => {
   const win = new BrowserWindow({
     frame: false,
     transparent: true,
@@ -19,6 +19,9 @@ function createWindow() {
       preload: path.join(__dirname, 'preload.js')
     }
   })
+
+  win.webContents.on('dom-ready', () => win.show())
+
   openLoginWindow(win)
 
   ipcMain.on("exit", () => app.exit())
@@ -58,9 +61,7 @@ function createWindow() {
     }
   })
 
-  ipcMain.on("minimize", () => {
-    win.minimize()
-  })
+  ipcMain.on("minimize", () => win.minimize())
 
   ipcMain.on("openCategoryGetMailboxSize", async (event, {login, password, path}) => {
     event.reply("openCategoryResMailboxSize", {
@@ -83,6 +84,12 @@ function createWindow() {
       event.reply("sendMessageRes", error)
     }
   })
+
+  ipcMain.on("markAsReadReq", async (event, { login, password, path, sequence }) => {
+    event.reply("markAsReadRes", await Mail.markAsRead(login, password, path, sequence))
+  })
+
+  ipcMain.on("logout", () => openLoginWindow(win))
 }
 
 app.whenReady().then(createWindow)

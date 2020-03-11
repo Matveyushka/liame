@@ -31,11 +31,20 @@ const getMessagesInfo = async (login, password, path, begin, end) => await
 const deleteMessages = async (login, password, path, sequence) => await
   (await getClient(login, password)).deleteMessages(path, sequence, { byUid: true })
 
+const markAsRead = async (login, password, path, sequence) => {
+  return await (await getClient(login, password)).setFlags(
+    path,
+    sequence,
+    { set: ['\\Seen'], add: ['\\Seen'], remove: ['\\Unseen'] },
+    { byUid: true }
+  )
+}
 
 module.exports = {
   getMailboxes,
   getMessage,
   getMessagesInfo,
   selectMailbox,
-  deleteMessages
+  deleteMessages,
+  markAsRead
 }

@@ -2,7 +2,7 @@ const downloadURL = (data, fileName) => {
   const tempLink = document.createElement('a');
   tempLink.href = data;
   tempLink.download = fileName;
-  document.body.appendChild(a);
+  document.body.appendChild(tempLink);
   tempLink.style = 'display: none';
   tempLink.click();
   tempLink.remove();
